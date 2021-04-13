@@ -2,6 +2,7 @@ package org.Api.test;
 
 import Utilities.APIResources;
 import Utilities.Base;
+
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.DataProviders.DataProviders;
@@ -22,14 +23,14 @@ public class SearchResultAPITest extends Base {
     List<String> gpo_list;
     List<String> hin_list;
 
-    @Test(priority = 0, dataProvider = "getGPOData",dataProviderClass = DataProviders.class)
+    @Test(priority = 0, dataProvider = "getGPOData", dataProviderClass = DataProviders.class)
     public void getGPOList(String gpo[]) {
         gpo_list = Arrays.asList(gpo);
 
     }
 
 
-    @Test(priority = 1, dataProvider = "getHINData",dataProviderClass = DataProviders.class)
+    @Test(priority = 1, dataProvider = "getHINData", dataProviderClass = DataProviders.class)
     public void getHINList(String hin[]) {
         hin_list = Arrays.asList(hin);
         pj = SearchResultPayload.getPojo(gpo_list, hin_list);
@@ -49,8 +50,6 @@ public class SearchResultAPITest extends Base {
         res = req.when().body(pj).post(APIResource);
 
 
-
-
     }
 
     @Test(priority = 4)
@@ -65,8 +64,19 @@ public class SearchResultAPITest extends Base {
     }
 
     @Test(priority = 6)
-    public void getHeaders(){
+    public void getHeaders() {
         System.out.println(res.getHeaders());
+    }
+
+    @Test(priority = 7)
+    public void deserailise_response() {
+        SearchResultsPojo responsePojo = res.getBody().as(SearchResultsPojo.class);/// deserialise
+        System.out.println(responsePojo.getStatus());
+        System.out.println(responsePojo.getResult().getTotal_parity_id());
+        System.out.println(responsePojo.getResult().getTotal_records());
+        System.out.println(responsePojo.getResult().getGrid_data());
+
+
     }
 
 

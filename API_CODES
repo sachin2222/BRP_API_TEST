@@ -1,0 +1,23 @@
+200->OK
+201->Created
+202->Accepted . Request Received by the Server but not yet acted Upon.
+203->Non-Authoritive Infomation . Meta Information from the server not match with the Origin server.
+204-> No Content. There is no Content to send in the information but the Header may be useful.
+
+
+
+400-> Bad Request
+401-> Authorisation Failed
+402-> Payment Required
+403-> Forbidderm
+404-> Not Found
+405-> Method Not allowed.
+
+
+500-> Internal Server Error
+501-> Not implemented. The Requested method is not supported by the server.
+502->Bad Gateway
+503-> Service unavailable
+504-> Gate way Timeout. Service is acting as a gateway but not getting reponse in time.
+
+
